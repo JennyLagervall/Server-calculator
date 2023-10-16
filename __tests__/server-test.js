@@ -48,6 +48,30 @@ describe(`Server-Side Tests:`, () => {
       })
   })
 
+  test(`Addition: POST /calculations : Make Sure you aren't accidentally concatenating or sending strings!`, (done) => {
+    const testAdditionCalculation = {
+      numOne: '100',
+      numTwo: '150',
+      operator: '+'
+    }
+
+    const testAdditionResult = {
+      ...testAdditionCalculation,
+      result: 250
+    }
+
+    request(app)
+      .post('/calculations')
+      .send(testAdditionCalculation)
+      .expect(201)
+      .then(() => {
+        testCalculations.push(testAdditionResult)
+        request(app)
+          .get('/calculations')
+          .expect(testCalculations, done)
+      })
+  })
+
   test(`Subtraction: POST /calculations handles pushes a calculation object into the calculations array and responds with status 201`, (done) => {
     const testSubtractionCalculation = {
       numOne: 100,

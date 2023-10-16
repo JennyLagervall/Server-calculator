@@ -15,7 +15,7 @@ Your task is to create a calculator app that demonstrates your understanding of 
 
 * Inside the `<section data-testid="resultHistory">` element, display a list of all previous calculations on the page when it loads (using a `GET '/calculations'` request). 
   * Update this list when a new calculation is made.
-* Inside the `<section data-testid="recentResult">` element, display the most recent calculation result.
+* Inside the `<section data-testid="recentResult">` element, display the most recent calculation **result**.
   * Update this when a new calculation is made.
 * Inside `<form data-testid="calculator">`:
   * Create a user interface where the user can input two values and select a mathematical operator.
@@ -49,7 +49,7 @@ Your task is to create a calculator app that demonstrates your understanding of 
     * `{ numOne: 25, numTwo: 10, operator: '+' }`
   * It should "do the math," then push this object into the server-side `calculations` array:
     * `{ numOne: 25, numTwo: 10, operator: '+', result: 35 }`
-  * After this succesful calculation, the `POST` route must send status `201` back to the client.
+  * After this successful calculation, the `POST` route must send status `201` back to the client.
   * 🔥 Note: **Do not use** the built-in JS `eval()` function. It's incredibly dangerous to obtain user input and *execute it as code*!
 
 #### Note About Data Persistence:
@@ -93,7 +93,7 @@ Your task is to create a calculator app that demonstrates your understanding of 
             <h2>525</h2>
           </section>
           ```
-      * The list of calculation history needs to be rendered somewhere inside the `<section>` element that has the `data-testit="resultHistory"` attribute.
+      * The list of calculation history needs to be rendered somewhere inside the `<section>` element that has the `data-testid="resultHistory"` attribute.
     
     </details>
 

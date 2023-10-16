@@ -3,6 +3,8 @@ const briefPause = require('./briefPause.js')
 
 // Mock the axios function:
 let axios = jest.fn(async (axiosArgument) => {
+  const requestTimestamp = Date.now()
+
   const requestMethod = axiosArgument.method.toUpperCase()
   
   // Take conditional action based on request method:
@@ -39,6 +41,8 @@ let axios = jest.fn(async (axiosArgument) => {
       axiosWasCalledWith: axiosArgument,
       status: 201,
       requestMethod,
+      requestTimestamp,
+      responseTimestamp: Date.now()
     })
   } else if (requestMethod === 'GET') {
     await briefPause(10)
@@ -48,6 +52,8 @@ let axios = jest.fn(async (axiosArgument) => {
       status: 200,
       data: axios.testData,
       requestMethod,
+      requestTimestamp,
+      responseTimestamp: Date.now()
     })
   }
 })
