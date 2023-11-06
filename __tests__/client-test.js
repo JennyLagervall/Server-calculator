@@ -58,6 +58,11 @@ describe(`Client-Side Tests:`, () => {
     container = dom.window.document.body
   })
 
+  // 🌈 TODO: Test that student code will work with the tests. 🌈
+  // it(`All required data-testid values are applied`), () => {
+  // 
+  // })
+
   it(`Makes one initial GET request upon page load`, async () => {
     expect(axios).toHaveBeenCalledTimes(1) // 👈 just one axios call
 
@@ -109,6 +114,11 @@ describe(`Client-Side Tests:`, () => {
     const requestMethods = mockedAxiosInteractions.map((response) => response.requestMethod)
     expect(requestMethods[1]).toBe('POST')
   })
+
+  // 🌈 TODO: Test that numOne and numTwo in POST data are numbers. 🌈
+  // it(`A POST request's numOne and numTwo data properties both have a datatype of number.`, () => {
+  // 
+  // })
 
   it(`Addition: A POST request's data is an object that contains the correct values for numOne, numTwo, and operator`, async () => {
     // Select the inputs and an operator button:
