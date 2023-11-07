@@ -93,8 +93,8 @@ describe(`Client-Side Tests:`, () => {
     // logic that prevents a bad POST request from happening.
 
     // Select the inputs and an operator button:
-    const numOne = getByPlaceholderText(container, /First Number/)
-    const numTwo = getByPlaceholderText(container, /Second Number/)
+    const numOne = getByTestId(container, 'numOne')
+    const numTwo = getByTestId(container, 'numTwo')
     const addButton = getByRole(container, 'button', { name: '+' })
 
     // Populate the inputs and click the '+' button:
@@ -122,8 +122,8 @@ describe(`Client-Side Tests:`, () => {
 
   it(`Addition: A POST request's data is an object that contains the correct values for numOne, numTwo, and operator`, async () => {
     // Select the inputs and an operator button:
-    const numOne = getByPlaceholderText(container, /First Number/)
-    const numTwo = getByPlaceholderText(container, /Second Number/)
+    const numOne = getByTestId(container, 'numOne')
+    const numTwo = getByTestId(container, 'numTwo')
     const addButton = getByRole(container, 'button', { name: '+' })
 
     // Populate the inputs and click the '+' button:
@@ -147,8 +147,8 @@ describe(`Client-Side Tests:`, () => {
 
   it(`Subtraction: A POST request's data is an object that contains the correct values for numOne, numTwo, and operator`, async () => {
     // Select the inputs and an operator button:
-    const numOne = getByPlaceholderText(container, /First Number/)
-    const numTwo = getByPlaceholderText(container, /Second Number/)
+    const numOne = getByTestId(container, 'numOne')
+    const numTwo = getByTestId(container, 'numTwo')
     const minusButton = getByRole(container, 'button', { name: '-' })
 
     // Populate the inputs and click the '-' button:
@@ -172,8 +172,8 @@ describe(`Client-Side Tests:`, () => {
 
   it(`Multiplication: A POST request's data is an object that contains the correct values for numOne, numTwo, and operator`, async () => {
     // Select the inputs and an operator button:
-    const numOne = getByPlaceholderText(container, /First Number/)
-    const numTwo = getByPlaceholderText(container, /Second Number/)
+    const numOne = getByTestId(container, 'numOne')
+    const numTwo = getByTestId(container, 'numTwo')
     const multiplicationButton = getByRole(container, 'button', { name: '*' })
 
     // Populate the inputs and click the '-' button:
@@ -197,8 +197,8 @@ describe(`Client-Side Tests:`, () => {
 
   it(`Division: A POST request's data is an object that contains the correct values for numOne, numTwo, and operator`, async () => {
     // Select the inputs and an operator button:
-    const numOne = getByPlaceholderText(container, /First Number/)
-    const numTwo = getByPlaceholderText(container, /Second Number/)
+    const numOne = getByTestId(container, 'numOne')
+    const numTwo = getByTestId(container, 'numTwo')
     const divisionButton = getByRole(container, 'button', { name: '/' })
 
     // Populate the inputs and click the '-' button:
@@ -222,8 +222,8 @@ describe(`Client-Side Tests:`, () => {
 
   it(`Clear: Inputs should be empty after the 'C' button is clicked`, () => {
     // Select the inputs and an operator button:
-    const numOne = getByPlaceholderText(container, /First Number/)
-    const numTwo = getByPlaceholderText(container, /Second Number/)
+    const numOne = getByTestId(container, 'numOne')
+    const numTwo = getByTestId(container, 'numTwo')
     const clearButton = getByRole(container, 'button', { name: 'C' })
 
     // Populate the inputs and click the '-' button:
@@ -239,8 +239,8 @@ describe(`Client-Side Tests:`, () => {
   })
 
   it(`After a successful POST request, the client makes a GET request to fetch the most recent results`, async () => {
-    const numOne = getByPlaceholderText(container, /First Number/)
-    const numTwo = getByPlaceholderText(container, /Second Number/)
+    const numOne = getByTestId(container, 'numOne')
+    const numTwo = getByTestId(container, 'numTwo')
     const addButton = getByRole(container, 'button', { name: '+' })
 
     // Populate the inputs and click the '+' button:
@@ -289,8 +289,8 @@ request receives its response.
 
   it(`After a successful POST request, the most recent result is rendered in the recentResult <section>`, async () => {
     // Select the inputs and an operator button:
-    const numOne = getByPlaceholderText(container, /First Number/)
-    const numTwo = getByPlaceholderText(container, /Second Number/)
+    const numOne = getByTestId(container, 'numOne')
+    const numTwo = getByTestId(container, 'numTwo')
     const addButton = getByRole(container, 'button', { name: '+' })
 
     // Populate the inputs and click the '+' button:
@@ -313,8 +313,8 @@ request receives its response.
 
   it(`After a successful POST request, the calculation history is rendered in the resultsHistory <section>`, async () => {
     // Select the inputs and an operator button:
-    const numOne = getByPlaceholderText(container, /First Number/)
-    const numTwo = getByPlaceholderText(container, /Second Number/)
+    const numOne = getByTestId(container, 'numOne')
+    const numTwo = getByTestId(container, 'numTwo')
     const addButton = getByRole(container, 'button', { name: '+' })
 
     // Populate the inputs and click the '+' button:

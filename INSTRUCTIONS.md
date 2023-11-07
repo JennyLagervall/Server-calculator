@@ -82,9 +82,9 @@ Your task is to create a calculator app that demonstrates your understanding of 
 
       * The calculator `<form>` must have this attribute:
         * `data-testid="calculator"`
-      * Your `<input>`s must use this exact placeholder text:
-        * `placeholder="First Number"`
-        * `placeholder="Second Number"`
+      * Your number `<input>`s must have this attribute:
+        * `data-testid="numOne"` for the first number
+        * `data-testid="numTwo` for the second number
       * All `<button>` text content is as specified:
         * `+` `-` `*` `/` `=` `C`
       * The most recent calculation result needs to be rendered somewhere inside the `<section>` element that has the `data-testid="recentResult"` attribute. For example, this would be just fine:
@@ -132,9 +132,8 @@ Your task is to create a calculator app that demonstrates your understanding of 
 * Only allow the `POST` request to happen if all necessary input is ready.
   * *Data integrity is of maximum importance! Sometimes users hit the "go button" without fully inputting the needed fields. Display an alert if they left something empty, and don't send bad or incomplete data to the server.*
 
-* Add an **additional button** that enables a user to clear the calculation history by clicking on a button. (This should empty out the `calculations` array on the server!) Technically this shouldn't be a `GET` or a `POST`. Look into making a `DELETE` request!
+* Allow a user to clear the calculation history by clicking on a button. (This should empty out the `calculations` array on the server!) Technically this shouldn't be a `GET` or a `POST`. Look into making a `DELETE` request!
   * *`GET`s are used to, well, get information from the server. `POST`s are used to send new info to the server. `DELETE`s are used for, you guessed it, deleting info already on the server.*
-  * **NOTE**: Just to be clear, the `'C'` button's behavior should ONLY clear the inputs. This stretch goal will require an **additional button**.
 
 * Modify the calculator interface to look and behave like an actual calculator, as shown below.
   * *Interfaces that mirror real world objects are often more intuitive and self-explanatory for users.*
