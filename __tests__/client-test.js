@@ -58,10 +58,16 @@ describe(`Client-Side Tests:`, () => {
     container = dom.window.document.body
   })
 
-  // 🌈 TODO: Test that student code will work with the tests. 🌈
-  // it(`All required data-testid values are applied`), () => {
-  // 
-  // })
+  // Making sure all required data-testids are present
+  // They come already completed, so the way these tests fail
+  // is if someone removes them or changes them.
+  it(`Has all required data-testids`, () => {
+    expect(getByTestId(container, 'numOne')).toBeTruthy();
+    expect(getByTestId(container, 'numTwo')).toBeTruthy();
+    expect(getByTestId(container, 'calculator')).toBeTruthy();
+    expect(getByTestId(container, 'recentResult')).toBeTruthy();
+    expect(getByTestId(container, 'resultHistory')).toBeTruthy();
+  })
 
   it(`Makes one initial GET request upon page load`, async () => {
     expect(axios).toHaveBeenCalledTimes(1) // 👈 just one axios call
