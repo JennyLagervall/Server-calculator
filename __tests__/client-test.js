@@ -17,8 +17,6 @@ const jsFile = fs.readFileSync(path.resolve(__dirname, '../server/public/scripts
 const testCalculations = require('./__utils__/testCalculations.js')
 const axios = require('./__utils__/axiosMock.js')
 const briefPause = require('./__utils__/briefPause.js')
-const resolveMockedFunctionPromises = require('./__utils__/resolveMockedFunctionPromises.js')
-const e = require('express')
 
 // Holds the jsdom instance that the tests run against:
 let container
@@ -42,6 +40,10 @@ describe(`Client-Side Tests:`, () => {
 
     // Reset our axios mock:
     axios.mockClear()
+
+    // Reset the array of metadata objects that represent axios calls
+    // within each test:
+    axios.calls = []
 
     // Reset the dummy data:
     axios.testData = [...testCalculations]
@@ -70,12 +72,9 @@ describe(`Client-Side Tests:`, () => {
   })
 
   it(`Makes one initial GET request upon page load`, async () => {
-    expect(axios).toHaveBeenCalledTimes(1) // 👈 just one axios call
+    expect(axios.calls.length).toBe(1) // 👈 just one axios call
 
-    const mockedAxiosInteractions = await resolveMockedFunctionPromises(axios)
-    const requestMethods = mockedAxiosInteractions.map((response) => response.requestMethod)
-
-    expect(requestMethods).toEqual(['GET']) // 👈 method was GET
+    expect(axios.calls[0].requestMethod).toBe('GET') // 👈 method was GET
   })
 
   it(`A GET request results in the most recent result being rendered inside the recentResult <section>`, () => {
@@ -114,11 +113,8 @@ describe(`Client-Side Tests:`, () => {
 
     await briefPause(200)
 
-    const mockedAxiosInteractions = await resolveMockedFunctionPromises(axios)
-
     // Confirm that the second HTTP request's method was POST:
-    const requestMethods = mockedAxiosInteractions.map((response) => response.requestMethod)
-    expect(requestMethods[1]).toBe('POST')
+    expect(axios.calls[1].requestMethod).toBe('POST')
   })
 
   // 🌈 TODO: Test that numOne and numTwo in POST data are numbers. 🌈
@@ -143,8 +139,7 @@ describe(`Client-Side Tests:`, () => {
 
     await briefPause(200)
 
-    const mockedAxiosInteractions = await resolveMockedFunctionPromises(axios)
-    const sentData = mockedAxiosInteractions[1].axiosWasCalledWith.data
+    const sentData = axios.calls[1].reqBody
 
     expect([123, '123']).toContain(sentData.numOne)
     expect([456, '456']).toContain(sentData.numTwo)
@@ -168,8 +163,7 @@ describe(`Client-Side Tests:`, () => {
 
     await briefPause(200)
 
-    const mockedAxiosInteractions = await resolveMockedFunctionPromises(axios)
-    const sentData = mockedAxiosInteractions[1].axiosWasCalledWith.data
+    const sentData = axios.calls[1].reqBody
 
     expect([123, '123']).toContain(sentData.numOne)
     expect([456, '456']).toContain(sentData.numTwo)
@@ -193,8 +187,7 @@ describe(`Client-Side Tests:`, () => {
 
     await briefPause(200)
 
-    const mockedAxiosInteractions = await resolveMockedFunctionPromises(axios)
-    const sentData = mockedAxiosInteractions[1].axiosWasCalledWith.data
+    const sentData = axios.calls[1].reqBody
 
     expect([123, '123']).toContain(sentData.numOne)
     expect([456, '456']).toContain(sentData.numTwo)
@@ -218,8 +211,7 @@ describe(`Client-Side Tests:`, () => {
 
     await briefPause(200)
 
-    const mockedAxiosInteractions = await resolveMockedFunctionPromises(axios)
-    const sentData = mockedAxiosInteractions[1].axiosWasCalledWith.data
+    const sentData = axios.calls[1].reqBody
 
     expect([123, '123']).toContain(sentData.numOne)
     expect([456, '456']).toContain(sentData.numTwo)
@@ -273,21 +265,19 @@ only be fired off AFTER the POST
 request receives its response.
     `
 
-    const mockedAxiosInteractions = await resolveMockedFunctionPromises(axios)
-
     // Three HTTP requests should have been made:
-    expect(axios).toHaveBeenCalledTimes(3)
+    expect(axios.calls.length).toBe(3)
 
     // 1. The initial GET on page load.
     // 2. The POST when the "Add Joke" button is clicked.
     // 3. Another GET after the POST request..
-    const requestMethods = mockedAxiosInteractions.map((response) => response.requestMethod)
+    const requestMethods = axios.calls.map((call) => call.requestMethod)
     expect(requestMethods).toEqual(['GET', 'POST', 'GET'])
 
     // We need these variables to verify that the POST response arrived before
     // the subsequent GET request was made:
-    const postResponseTimestamp = mockedAxiosInteractions[1].responseTimestamp
-    const subsequentGetRequestTimestamp = mockedAxiosInteractions[2].requestTimestamp
+    const postResponseTimestamp = axios.calls[1].responseTimestamp
+    const subsequentGetRequestTimestamp = axios.calls[2].requestTimestamp
 
     expect(postResponseTimestamp, raceHint, customOutputOptions).toBeLessThanOrEqual(subsequentGetRequestTimestamp)
 
