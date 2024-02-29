@@ -18,8 +18,6 @@ let axios = jest.fn(async (axiosArgument) => {
 
 async function mockedPost(url, reqBody) {
   const requestTimestamp = Date.now()
-  // axios.requestMethodsReceived.push('POST')
-
   // 1. Obtain req.body data numOne, numTwo, operator
   const { numOne, numTwo, operator } = reqBody
 
@@ -34,13 +32,13 @@ async function mockedPost(url, reqBody) {
   const result = obtainResult(calculation)
   calculation.result = result
 
+  // 4. Push the solved calculation into the test array of calculations:
   axios.testData.push(calculation)
 
   await briefPause(150)
 
   const postResult = {
-    // axiosWasCalledWith: {data: reqBody}, // DELETE this property and modify tests to use reqBody property
-    reqBody: reqBody, // TODO TODO,
+    reqBody: reqBody,
     status: 201,
     requestMethod: 'POST',
     requestTimestamp,
