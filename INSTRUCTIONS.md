@@ -82,9 +82,9 @@ Your task is to create a calculator app that demonstrates your understanding of 
 
       * The calculator `<form>` must have this attribute:
         * `data-testid="calculator"`
-      * Your `<input>`s must use this exact placeholder text:
-        * `placeholder="First Number"`
-        * `placeholder="Second Number"`
+      * Your number `<input>`s must have this attribute:
+        * `data-testid="numOne"` for the first number
+        * `data-testid="numTwo` for the second number
       * All `<button>` text content is as specified:
         * `+` `-` `*` `/` `=` `C`
       * The most recent calculation result needs to be rendered somewhere inside the `<section>` element that has the `data-testid="recentResult"` attribute. For example, this would be just fine:

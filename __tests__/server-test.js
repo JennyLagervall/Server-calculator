@@ -48,29 +48,32 @@ describe(`Server-Side Tests:`, () => {
       })
   })
 
-  test(`Addition: POST /calculations : Make Sure you aren't accidentally concatenating or sending strings!`, (done) => {
-    const testAdditionCalculation = {
-      numOne: '100',
-      numTwo: '150',
-      operator: '+'
-    }
+  // Commenting this out for now. If a student's client-side code guarantees that only numbers will be sent
+  // to the server, there's no need for the POST route to be able to handle incoming strings. Would make
+  // more sense to test that the client-side code sends numOne and numTwo as numbers.
+  // test(`Addition: POST /calculations : Make Sure you aren't accidentally concatenating or sending strings!`, (done) => {
+  //   const testAdditionCalculation = {
+  //     numOne: '100',
+  //     numTwo: '150',
+  //     operator: '+'
+  //   }
 
-    const testAdditionResult = {
-      ...testAdditionCalculation,
-      result: 250
-    }
+  //   const testAdditionResult = {
+  //     ...testAdditionCalculation,
+  //     result: 250
+  //   }
 
-    request(app)
-      .post('/calculations')
-      .send(testAdditionCalculation)
-      .expect(201)
-      .then(() => {
-        testCalculations.push(testAdditionResult)
-        request(app)
-          .get('/calculations')
-          .expect(testCalculations, done)
-      })
-  })
+  //   request(app)
+  //     .post('/calculations')
+  //     .send(testAdditionCalculation)
+  //     .expect(201)
+  //     .then(() => {
+  //       testCalculations.push(testAdditionResult)
+  //       request(app)
+  //         .get('/calculations')
+  //         .expect(testCalculations, done)
+  //     })
+  // })
 
   test(`Subtraction: POST /calculations handles pushes a calculation object into the calculations array and responds with status 201`, (done) => {
     const testSubtractionCalculation = {
