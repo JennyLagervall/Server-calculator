@@ -9,14 +9,14 @@
   <body>
     <h1>Server-Side Calculator</h1>
 
-    <form data-testid="calculator">
-      <input data-testid="numOne" placeholder="First Number">
-      <button>+</button>
-      <button>-</button>
-      <button>*</button>
-      <button>/</button>
-      <input data-testid="numTwo" placeholder="Second Number">
-      <button>=</button>
+    <form data-testid="calculator" onsubmit="addCalculation(event)">
+      <input data-testid="numOne" placeholder="First Number" type="number" required>
+      <button type="button" onclick="clickedOperator('+')">+</button>
+      <button type="button" onclick="clickedOperator('-')">-</button>
+      <button type="button" onclick="clickedOperator('*')">*</button>
+      <button type="button" onclick="clickedOperator('/')">/</button>
+      <input data-testid="numTwo" placeholder="Second Number" type="number" required>
+      <button type="submit">=</button>
       <button>C</button>
     </form>
 

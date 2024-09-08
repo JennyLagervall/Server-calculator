@@ -7,14 +7,39 @@ app.use(express.static('server/public'));
 
 // Global variable that will contain all of the
 // calculation objects:
-let calculations = []
 
+let calculations = [];
+let result = 0;
 
 // Here's a wonderful place to make some routes:
 
-// GET /calculations
+//GET / calculations;
+app.get('/calculations', (req, res) => {
+  res.send(calculations);
+});
 
 // POST /calculations
+app.post('/calculations', (req, res) => {
+  console.log(req.body); //  {"numOne": 1, "numTwo": 2, "operator": "+"}
+  if (req.body.numOne && req.body.numTwo && req.body.operator) {
+    if (req.body.operator === '+') {
+      result = req.body.numOne + req.body.numTwo;
+    } else if (req.body.operator === '-') {
+      result = req.body.numOne - req.body.numTwo;
+    } else if (req.body.operator === '*') {
+      result = req.body.numOne * req.body.numTwo;
+    } else if (req.body.operator === '/') {
+      result = req.body.numOne / req.body.numTwo;
+    }
+    const calcObj = { numOne: req.body.numOne, numTwo: req.body.numTwo, operator: req.body.operator, result: result };
+
+    calculations.push(calcObj);
+
+    res.sendStatus(201);
+  } else {
+    res.status(400).send('calculations object requires two number inputs and an operator (e.g. +,-,*,/');
+  }
+});
 
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
@@ -39,10 +64,10 @@ const server = app.listen(PORT, () => {
 // absolutely no need for you to reason about this.
 app.closeServer = () => {
   server.close();
-}
+};
 
 app.setCalculations = (calculationsToSet) => {
   calculations = calculationsToSet;
-}
+};
 
 module.exports = app;
