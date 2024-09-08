@@ -35,6 +35,20 @@ function addCalculation(event) {
   event.preventDefault();
   const numOne = Number(document.querySelector('[data-testid="numOne"]').value);
   const numTwo = Number(document.querySelector('[data-testid="numTwo"]').value);
+
+ 
+
+//   if (numOne === '') {
+//     alert('Please enter a number in the first box.');
+//     return;
+//   } else if (numTwo === '') {
+//     alert('Please enter a number in the second box.');
+//     return;
+//   } else if (chosenOperator === '') {
+//     alert('Please select an operator.');
+//     return;
+//   }
+
   console.log('numOne:', numOne);
   console.log('numTwo:', numTwo);
   console.log('chosenOperator:', chosenOperator);
@@ -70,6 +84,10 @@ function addCalculation(event) {
     .catch((error) => console.error('whoops, something isnt right!'));
 }
 
-// document.querySelector('[data-testid="numOne"]').value = '';
-// document.querySelector('[data-testid="numTwo"]').value = '';
+function clearInput(event){
+ document.querySelector('[data-testid="numOne"]').value = "";
+ document.querySelector('[data-testid="numTwo"]').value = "";  
+}
+
+
 onReady();
