@@ -1,11 +1,11 @@
 function onReady() {
   console.log('JavaScript is loaded!');
-  FetchNumCalc();
+  fetchNumCalc();
 }
 let operator = '';
 
 // get calculation data from server
-function FetchNumCalc() {
+function fetchNumCalc() {
   axios({
     method: 'GET',
     url: '/calculations',
@@ -55,7 +55,8 @@ function addCalculation(event) {
     data: domCalc,
   })
     .then((response) => {
-      FetchNumCalc();
+      fetchNumCalc();
+      clearInput();
     })
     .catch((error) => {
       console.error('whoops, something isnt right!');
