@@ -11,15 +11,14 @@
 
     <form data-testid="calculator" onsubmit="addCalculation(event)">
       <input data-testid="numOne" placeholder="First Number" type="number">
-      <button type="button" onclick="clickedOperator('+')">+</button>
-      <button type="button" onclick="clickedOperator('-')">-</button>
-      <button type="button" onclick="clickedOperator('*')">*</button>
-      <button type="button" onclick="clickedOperator('/')">/</button>
+      <button type="button" id="+" onclick=clickedOperator(event)>+</button>
+      <button type="button" id="-"onclick="clickedOperator(event)">-</button>
+      <button type="button" id="*"onclick="clickedOperator(event)">*</button>
+      <button type="button" id="/"onclick="clickedOperator(event)">/</button>
       <input data-testid="numTwo" placeholder="Second Number" type="number">
       <button type="submit">=</button>
       <button type="button" onclick="clearInput(event)">C</button>
     </form>
-
     <section data-testid="recentResult">
       <!-- The most recent calculation result goes here. -->
     </section>
