@@ -11,14 +11,18 @@ function fetchNumCalc() {
     url: '/calculations',
   }).then(function (response) {
     const calcData = response.data;
-    console.log('Calculations data array', calcData);
+    //console.log('response.data', response.data);
+    //console.log('Calculations data array', calcData);
     const resultHistory = document.getElementById("resultHistory");
     const recentResult = document.getElementById("recentResult");
-    console.log('resultHistory', resultHistory);
-    console.log('recentResult', recentResult);
+    // console.log('resultHistory', resultHistory);
+    // console.log('recentResult', recentResult);
     recentResult.innerHTML = '';
     if (calcData.length > 0) {
-      recentResult.innerHTML = `<h3>${calcData[calcData.length - 1].result}</h3>`;
+      recentResult.innerHTML = recentResult.innerHTML = `<h3>${calcData[calcData.length - 1].numOne} ${
+        calcData[calcData.length - 1].operator
+      } ${calcData[calcData.length - 1].numTwo} = ${calcData[calcData.length - 1].result}</h3>`;
+
     resultHistory.innerHTML = '';
       for (let calculation of calcData) {
         console.log('calculation', calculation);
@@ -41,9 +45,11 @@ function clickedOperator(event) {
 function addCalculation(event) {
   event.preventDefault();
   const numOne = document.getElementById("numOne").value;
-  const numTwo = document.getElementById("numTwo").value;
   console.log('numOne:', numOne);
-  console.log('numTwo:', numTwo);
+
+  const numTwo = document.getElementById("numTwo").value;
+  console.log('numOne :', numOne);
+  console.log('numTwo', numTwo);
 
   const domCalc = { numOne, numTwo, operator };
 
@@ -56,7 +62,6 @@ function addCalculation(event) {
   })
     .then((response) => {
       fetchNumCalc();
-      clearInput();
     })
     .catch((error) => {
       console.error('whoops, something isnt right!');

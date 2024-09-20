@@ -1,0 +1,60 @@
+body {
+  background: linear-gradient(90deg, #ff7e5f, #b27bfe); 
+  opacity: 90%; 
+  padding: 0px;
+  margin: 0px;
+}
+.header {
+      background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('./CalcTwo.png');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 30px;
+      text-align: left;
+      font-family: 'Source Code Pro', monospace;
+      color:floralwhite;
+      text-wrap:wrap;
+      border-bottom: solid whitesmoke 10px;
+    }
+
+    
+.enterCalText {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;   
+}
+
+.btn {
+  background-color: whitesmoke;
+}
+
+#result {
+  margin: 20px;
+  text-align: center;
+  color: aliceblue;
+ 
+}
+#recentResult{
+   margin: 20px;
+  text-align: center;
+  border-bottom: solid whitesmoke 5px;
+}
+
+#recentcal{
+  margin-left: 30px;
+
+}
+#resultHistory{
+  
+
+}
+/* .enterCalText {
+  font-family: 'Source Code Pro', monospace;
+  color:rgb(117, 88, 79);
+} */
+/* .zeyada-regular {
+  font-family: "Zeyada", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
